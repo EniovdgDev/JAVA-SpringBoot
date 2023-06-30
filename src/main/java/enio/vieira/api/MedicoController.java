@@ -4,6 +4,7 @@ import enio.vieira.api.medico.DadosCadastroMedico;
 import enio.vieira.api.medico.Medico;
 import enio.vieira.api.medico.MedicoRepository;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ public class MedicoController {
     //tipo de requisição(Post) - @reqBody serve para dizer que o dado vem do body da request
     @PostMapping
     @Transactional // escrever no banco
-    public void cadastrarMedico(@RequestBody DadosCadastroMedico dados){
+    public void cadastrarMedico(@RequestBody @Valid DadosCadastroMedico dados){ // @Valid para ver se o DTO veio correto
         //Receber o DTO e transforma no Medico usando o contrutor
         repository.save(new Medico(dados));
     }
