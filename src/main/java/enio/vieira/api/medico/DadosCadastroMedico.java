@@ -7,23 +7,21 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-//Especialidade é um enum com 4 coisas pre definidas no escopo | DadosEndereco é outro DTO(um record).
 public record DadosCadastroMedico(
 
-        @NotBlank   // Não pode ser nulo/vazio
+        @NotBlank
         String nome,
         @NotBlank
-        @Email      // Formato de email
+        @Email
         String email,
-
         @NotBlank
-        String telefone, //Novo campo
+        String telefone,
         @NotBlank
-        @Pattern(regexp = "\\d{4,6}") // Regex para ser 4 a 7 digitos
+        @Pattern(regexp = "\\d{4,6}")
         String crm,
-        @NotNull    //Não pode ser nulo , pois é um enum
+        @NotNull
         Especialidade especialidade,
         @NotNull
-        @Valid // validar DTO que possui bean validation dentro
+        @Valid
         DadosEndereco endereco) {
 }
