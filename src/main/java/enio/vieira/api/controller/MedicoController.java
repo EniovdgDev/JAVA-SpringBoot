@@ -47,6 +47,11 @@ public class MedicoController {
         //Após mudar a entidade, o spring faz um update no banco automaticamente.
     }
 
+    @DeleteMapping("/{id}")//parametro que vem da url
+    @Transactional
+    public void excluir(@PathVariable Long id){ //anotacao para pegar valor da url
+        repository.deleteById(id);
+    }
 
 
 }
