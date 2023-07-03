@@ -43,4 +43,18 @@ public class Medico {
         //Aqui faço outro construtor e mando os dados do DTO Endereco
         this.endereco = new Endereco(dados.endereco());
     }
+
+    public void atualizarInformacoes(DadosAtualizacaoMedico dados) {
+        //precisa usar o if, pois como nao e obrigatorio o JAVA trata como null os campos que nao forem atualziados
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+
+    }
 }

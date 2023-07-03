@@ -1,9 +1,6 @@
 package enio.vieira.api.controller;
 
-import enio.vieira.api.medico.DadosCadastroMedico;
-import enio.vieira.api.medico.DadosListagemMedico;
-import enio.vieira.api.medico.Medico;
-import enio.vieira.api.medico.MedicoRepository;
+import enio.vieira.api.medico.*;
 
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -40,5 +37,16 @@ public class MedicoController {
         // Na url pode-se fazer requests = ?size=10&page=1 // size e quantos registros vem, page é qual pagina estou. Vai sobreescrever o padrao
         // Para fazer o sort o parametro via url é = sort=variavel  || ainda pode usar = sort=variavel,desc ou sort=variavel,asc para crescente ou decrescente
     }
+
+
+    @PutMapping //tipo de requisição(put)
+    @Transactional // escrever no banco
+    public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
+        var medico = repository.getReferenceById(dados.id()); // salvo o medico do banco na variavel
+        medico.atualizarInformacoes(dados); // vejo os campos que vieram e faço as trocas
+        //Após mudar a entidade, o spring faz um update no banco automaticamente.
+    }
+
+
 
 }
