@@ -50,7 +50,8 @@ public class MedicoController {
     @DeleteMapping("/{id}")//parametro que vem da url
     @Transactional
     public void excluir(@PathVariable Long id){ //anotacao para pegar valor da url
-        repository.deleteById(id);
+        var medico = repository.getReferenceById(id);
+        medico.excluir(); // vai definir ativo como false
     }
 
 
